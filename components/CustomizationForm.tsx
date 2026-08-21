@@ -19,7 +19,7 @@ export const CustomizationForm: React.FC<CustomizationFormProps> = ({
   const [products, setProducts] = useState('');
   const [colorPrefs, setColorPrefs] = useState('');
   const [instructions, setInstructions] = useState('');
-  const [sellerPhone, setSellerPhone] = useState('94771234567'); // Default Sri Lankan WhatsApp format
+  const [sellerPhone, setSellerPhone] = useState(''); // Default Sri Lankan WhatsApp format
 
   const [uploadedFiles, setUploadedFiles] = useState<File[]>([]);
   const [uploadError, setUploadError] = useState<string | null>(null);
@@ -64,7 +64,7 @@ export const CustomizationForm: React.FC<CustomizationFormProps> = ({
     }
 
     const cleanPhone = sellerPhone.replace(/[^0-9]/g, '');
-    const phoneToUse = cleanPhone.length > 5 ? cleanPhone : '94771234567';
+    const phoneToUse = cleanPhone.length > 5 ? cleanPhone : '94711531989';
 
     // Construct formatted text message
     const messageLines = [
@@ -241,7 +241,7 @@ export const CustomizationForm: React.FC<CustomizationFormProps> = ({
                 type="text"
                 value={sellerPhone}
                 onChange={(e) => setSellerPhone(e.target.value)}
-                placeholder="e.g., 94771234567"
+                placeholder="e.g., 94711531989"
                 className="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500 text-sm font-mono font-medium transition-all shadow-xs"
               />
             </div>

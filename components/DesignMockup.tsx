@@ -168,7 +168,7 @@ export const DesignMockup: React.FC<DesignMockupProps> = ({ item, className = ''
       {/* Bottom Footer Info Badges */}
       <div className="relative z-10 flex items-center justify-between border-t border-white/20 pt-1 text-[8px] text-white/80">
         <span className="flex items-center gap-1">
-          <Phone className="w-2.5 h-2.5 text-amber-300" /> +94 77 123 4567
+          <Phone className="w-2.5 h-2.5 text-amber-300" /> +94 71 153 1989
         </span>
         <span className="flex items-center gap-1 font-semibold text-emerald-300">
           <CheckCircle2 className="w-2.5 h-2.5" /> Order Now
