@@ -69,8 +69,15 @@ export const VideoGuideBanner: React.FC = () => {
                 onClick={() => setIsPlaying(true)}
                 className="group relative rounded-xl overflow-hidden aspect-video bg-stone-900 border-2 border-amber-500/50 shadow-2xl cursor-pointer flex items-center justify-center transition-transform hover:scale-[1.01]"
               >
-                {/* Simulated Thumbnail */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black via-amber-950/60 to-black/40" />
+                {/* Actual Video Thumbnail */}
+                <img 
+                  src="https://img.youtube.com/vi/OvzCz02CdBU/maxresdefault.jpg" 
+                  alt="Video Thumbnail" 
+                  className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
+                />
+                
+                {/* Dark Overlay for better contrast */}
+                <div className="absolute inset-0 bg-black/30 group-hover:bg-black/10 transition-colors duration-500" />
                 
                 {/* Decorative Play Pattern */}
                 <div className="absolute top-2.5 left-2.5 px-2 py-0.5 rounded bg-red-600 text-white text-[9px] sm:text-[10px] font-bold uppercase tracking-wider flex items-center gap-1">
@@ -78,13 +85,10 @@ export const VideoGuideBanner: React.FC = () => {
                 </div>
 
                 {/* Big Play Button Overlay */}
-                <div className="relative z-10 flex flex-col items-center space-y-1.5 sm:space-y-2 text-center p-3">
+                <div className="relative z-10 flex flex-col items-center p-3">
                   <div className="w-12 h-12 sm:w-16 sm:h-16 rounded-full bg-orange-600 group-hover:bg-orange-500 text-white flex items-center justify-center shadow-xl border-2 sm:border-4 border-amber-300/80 group-hover:scale-110 transition-all">
                     <Play className="w-6 h-6 sm:w-8 sm:h-8 fill-white translate-x-0.5" />
                   </div>
-                  <span className="text-[10px] sm:text-xs font-extrabold text-white tracking-wide uppercase bg-black/60 px-2.5 py-0.5 sm:py-1 rounded-full border border-white/20">
-                    Click to Watch Guide Video
-                  </span>
                 </div>
               </div>
             )}
