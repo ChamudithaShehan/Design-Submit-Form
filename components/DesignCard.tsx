@@ -60,9 +60,6 @@ export const DesignCard: React.FC<DesignCardProps> = ({
             <span className="font-extrabold text-[11px] sm:text-xs text-orange-600 font-mono">
               {item.code}
             </span>
-            <span className="text-[9px] sm:text-[10px] font-semibold text-slate-500 bg-slate-100 px-1 py-0.5 rounded truncate max-w-[70px]">
-              {item.category}
-            </span>
           </div>
 
           <h4 className="font-bold text-[11px] sm:text-xs text-slate-800 line-clamp-1 mt-0.5">
