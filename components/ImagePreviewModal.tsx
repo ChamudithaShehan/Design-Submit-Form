@@ -46,9 +46,9 @@ export const ImagePreviewModal: React.FC<ImagePreviewModalProps> = ({
         </div>
 
         {/* Modal Body with Large Preview */}
-        <div className="p-4 sm:p-6 overflow-y-auto space-y-4 bg-slate-50">
-          <div className="w-full flex items-center justify-center p-3 sm:p-6 bg-white rounded-xl shadow-inner border border-slate-200">
-            <div className={item.type === 'logo' ? 'w-full max-w-[280px] sm:max-w-[400px] md:max-w-[480px] aspect-square' : 'w-full aspect-[16/9]'}>
+        <div className="p-0 sm:p-6 overflow-y-auto bg-slate-50 flex items-center justify-center min-h-[300px]">
+          <div className="w-full flex items-center justify-center p-0 sm:p-6 bg-white sm:rounded-xl shadow-none sm:shadow-inner border-0 sm:border border-slate-200">
+            <div className={item.type === 'logo' ? 'w-full max-w-[90vw] sm:max-w-[400px] md:max-w-[480px] aspect-square' : 'w-full aspect-[16/9]'}>
               <DesignMockup item={item} isLarge />
             </div>
           </div>
