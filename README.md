@@ -37,6 +37,18 @@ npm run dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the application in action.
 
+## ⚙️ Environment Configuration
+
+To enable image uploads and configure the WhatsApp destination number, create a `.env.local` file in the root directory and add the following variables:
+
+```env
+# Required: The destination WhatsApp number for orders (format: Country Code + Number)
+NEXT_PUBLIC_WHATSAPP_NUMBER=94*********
+
+# Required: API key for ImgBB to handle image uploads
+NEXT_PUBLIC_IMGBB_API_KEY=your_imgbb_api_key_here
+```
+
 ## 📁 Project Structure
 
 - `app/` - Next.js App Router pages and layouts.

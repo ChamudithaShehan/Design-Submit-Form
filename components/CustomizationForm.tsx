@@ -19,11 +19,10 @@ export const CustomizationForm: React.FC<CustomizationFormProps> = ({
   const [products, setProducts] = useState('');
   const [colorPrefs, setColorPrefs] = useState('');
   const [instructions, setInstructions] = useState('');
-  const [sellerPhone, setSellerPhone] = useState(''); // Default Sri Lankan WhatsApp format
-
   const [uploadedFiles, setUploadedFiles] = useState<File[]>([]);
   const [uploadError, setUploadError] = useState<string | null>(null);
   const [validationError, setValidationError] = useState<string | null>(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleFileUpload = (e: ChangeEvent<HTMLInputElement>) => {
     setUploadError(null);
@@ -43,9 +42,10 @@ export const CustomizationForm: React.FC<CustomizationFormProps> = ({
     setUploadError(null);
   };
 
-  const handleSubmitWhatsApp = (e: FormEvent) => {
+  const handleSubmitWhatsApp = async (e: FormEvent) => {
     e.preventDefault();
     setValidationError(null);
+    setUploadError(null);
 
     // Validation
     if (!brandName.trim()) {
@@ -63,41 +63,70 @@ export const CustomizationForm: React.FC<CustomizationFormProps> = ({
       return;
     }
 
-    const cleanPhone = sellerPhone.replace(/[^0-9]/g, '');
-    
-    if (cleanPhone && (cleanPhone.length < 9 || cleanPhone.length > 15)) {
-      setValidationError('Please enter a valid phone number (9-15 digits). (නිවැරදි දුරකථන අංකයක් ඇතුළත් කරන්න)');
-      return;
+    // Get WhatsApp number from env or fallback to default
+    const envPhone = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || '94711531989';
+    const phoneToUse = envPhone.replace(/[^0-9]/g, '');
+
+    setIsSubmitting(true);
+
+    try {
+      let uploadedImageUrls: string[] = [];
+
+      if (uploadedFiles.length > 0) {
+        const apiKey = process.env.NEXT_PUBLIC_IMGBB_API_KEY;
+        if (!apiKey) {
+          throw new Error('ImgBB API key is missing. Please check .env.local file.');
+        }
+
+        for (const file of uploadedFiles) {
+          const formData = new FormData();
+          formData.append('image', file);
+          
+          // ImgBB requires the key in the URL or formData
+          const response = await fetch(`https://api.imgbb.com/1/upload?key=${apiKey}`, {
+            method: 'POST',
+            body: formData,
+          });
+
+          const data = await response.json();
+          if (data.success) {
+            uploadedImageUrls.push(data.data.url);
+          } else {
+            throw new Error(data.error?.message || 'Failed to upload image.');
+          }
+        }
+      }
+
+      // Construct formatted text message
+      const messageLines = [
+        `🎨 *NEW CUSTOM BRANDING ORDER* 🎨`,
+        `----------------------------------------`,
+        `📌 *Brand / Page Name:* ${brandName.trim()}`,
+        `🛒 *Products / Services:* ${products.trim() || 'Not specified'}`,
+        `🎨 *Color Preferences:* ${colorPrefs.trim() || 'Default design colors'}`,
+        ``,
+        `--- *SELECTED DESIGNS* ---`,
+        `🔹 *Logo Code:* ${selectedLogo.code} (${selectedLogo.nameEn})`,
+        `🔹 *Cover Photo Code:* ${selectedCover.code} (${selectedCover.nameEn})`,
+        ``,
+        `--- *CUSTOM NOTES* ---`,
+        `📝 *Instructions:* ${instructions.trim() || 'None'}`,
+        uploadedImageUrls.length > 0 ? `🖼️ *Reference Photos:*\n${uploadedImageUrls.join('\n')}` : `🖼️ *Reference Photos:* None`,
+        `----------------------------------------`,
+        `Sent via Custom Branding Studio Ordering Portal`
+      ];
+
+      const fullMessage = messageLines.join('\n');
+      const encodedMessage = encodeURIComponent(fullMessage);
+      const whatsappUrl = `https://wa.me/${phoneToUse}?text=${encodedMessage}`;
+
+      // Open WhatsApp
+      window.open(whatsappUrl, '_blank');
+    } catch (err: any) {
+      setUploadError(err.message || 'Error uploading images. Please try again.');
+    } finally {
+      setIsSubmitting(false);
     }
-
-    const phoneToUse = cleanPhone.length >= 9 ? cleanPhone : '94711531989';
-
-    // Construct formatted text message
-    const messageLines = [
-      `🎨 *NEW CUSTOM BRANDING ORDER* 🎨`,
-      `----------------------------------------`,
-      `📌 *Brand / Page Name:* ${brandName.trim()}`,
-      `🛒 *Products / Services:* ${products.trim() || 'Not specified'}`,
-      `🎨 *Color Preferences:* ${colorPrefs.trim() || 'Default design colors'}`,
-      ``,
-      `--- *SELECTED DESIGNS* ---`,
-      `🔹 *Logo Code:* ${selectedLogo.code} (${selectedLogo.nameEn})`,
-      `🔹 *Cover Photo Code:* ${selectedCover.code} (${selectedCover.nameEn})`,
-      ``,
-      `--- *CUSTOM NOTES* ---`,
-      `📝 *Instructions:* ${instructions.trim() || 'None'}`,
-      `🖼️ *Uploaded Reference Ideas:* ${uploadedFiles.length} file(s) uploaded in portal`,
-      uploadedFiles.length > 0 ? `⚠️ *(Please manually attach these photos in this WhatsApp chat now)*` : ``,
-      `----------------------------------------`,
-      `Sent via Custom Branding Studio Ordering Portal`
-    ];
-
-    const fullMessage = messageLines.join('\n');
-    const encodedMessage = encodeURIComponent(fullMessage);
-    const whatsappUrl = `https://wa.me/${phoneToUse}?text=${encodedMessage}`;
-
-    // Open WhatsApp
-    window.open(whatsappUrl, '_blank');
   };
 
   return (
@@ -146,7 +175,7 @@ export const CustomizationForm: React.FC<CustomizationFormProps> = ({
                   Don't like the examples? Upload your own idea (Max 2 Photos)
                 </p>
                 <p className="text-[11px] sm:text-xs font-medium text-orange-800 mt-0.5">
-                  ඔබට අවශ්‍ය වෙනත් මෝස්තර සටහනක් ඇත්නම් ඡායාරූප 2ක් දක්වා මෙතැනට එක් කරන්න. (Please manually send these in WhatsApp later)
+                  ඔබට අවශ්‍ය වෙනත් මෝස්තර සටහනක් ඇත්නම් ඡායාරූප 2ක් දක්වා මෙතැනට එක් කරන්න
                 </p>
               </div>
 
@@ -235,23 +264,6 @@ export const CustomizationForm: React.FC<CustomizationFormProps> = ({
               />
             </div>
 
-            {/* Input 4: Seller Phone Number Config */}
-            <div className="space-y-1">
-              <label className="block text-xs sm:text-sm font-extrabold text-slate-800 flex items-center gap-1">
-                <PhoneCall className="w-3.5 h-3.5 text-orange-600" />
-                Seller WhatsApp Phone Number
-              </label>
-              <span className="block text-[11px] sm:text-xs font-semibold text-orange-950">
-                ඇණවුම් යවන WhatsApp අංකය (Country code + Number)
-              </span>
-              <input
-                type="text"
-                value={sellerPhone}
-                onChange={(e) => setSellerPhone(e.target.value)}
-                placeholder="e.g., 94711531989"
-                className="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500 text-sm font-mono font-medium transition-all shadow-xs"
-              />
-            </div>
           </div>
 
           {/* Textarea: Customization Instructions */}
@@ -297,13 +309,27 @@ export const CustomizationForm: React.FC<CustomizationFormProps> = ({
           {/* WhatsApp Submit CTA */}
           <button
             type="submit"
-            className="w-full py-3.5 sm:py-4 px-4 sm:px-6 rounded-xl sm:rounded-2xl bg-gradient-to-r from-orange-600 via-orange-500 to-amber-500 hover:from-orange-700 hover:to-amber-600 text-white font-black text-base sm:text-lg tracking-wide shadow-xl hover:shadow-2xl transition-all transform active:scale-[0.98] flex items-center justify-center gap-2.5 sm:gap-3 cursor-pointer"
+            disabled={isSubmitting}
+            className={`w-full py-3.5 sm:py-4 px-4 sm:px-6 rounded-xl sm:rounded-2xl font-black text-base sm:text-lg tracking-wide shadow-xl transition-all transform flex items-center justify-center gap-2.5 sm:gap-3 cursor-pointer ${
+              isSubmitting 
+                ? 'bg-slate-400 text-white cursor-not-allowed scale-100' 
+                : 'bg-gradient-to-r from-orange-600 via-orange-500 to-amber-500 hover:from-orange-700 hover:to-amber-600 text-white hover:shadow-2xl active:scale-[0.98]'
+            }`}
           >
-            <Send className="w-5 h-5 sm:w-6 sm:h-6 shrink-0" />
-            <div className="flex flex-col sm:flex-row items-center sm:gap-2 text-center">
-              <span>💬 Submit Order via WhatsApp</span>
-              <span className="text-[11px] sm:text-xs font-normal text-amber-100">(WhatsApp හරහා ඇණවුම් කරන්න)</span>
-            </div>
+            {isSubmitting ? (
+              <div className="flex items-center gap-3">
+                <div className="w-5 h-5 sm:w-6 sm:h-6 border-4 border-white border-t-transparent rounded-full animate-spin" />
+                <span>Uploading Photos...</span>
+              </div>
+            ) : (
+              <>
+                <Send className="w-5 h-5 sm:w-6 sm:h-6 shrink-0" />
+                <div className="flex flex-col sm:flex-row items-center sm:gap-2 text-center">
+                  <span>💬 Submit Order via WhatsApp</span>
+                  <span className="text-[11px] sm:text-xs font-normal text-amber-100">(WhatsApp හරහා ඇණවුම් කරන්න)</span>
+                </div>
+              </>
+            )}
           </button>
         </form>
       </div>
