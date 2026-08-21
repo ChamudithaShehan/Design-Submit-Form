@@ -64,7 +64,13 @@ export const CustomizationForm: React.FC<CustomizationFormProps> = ({
     }
 
     const cleanPhone = sellerPhone.replace(/[^0-9]/g, '');
-    const phoneToUse = cleanPhone.length > 5 ? cleanPhone : '94711531989';
+    
+    if (cleanPhone && (cleanPhone.length < 9 || cleanPhone.length > 15)) {
+      setValidationError('Please enter a valid phone number (9-15 digits). (නිවැරදි දුරකථන අංකයක් ඇතුළත් කරන්න)');
+      return;
+    }
+
+    const phoneToUse = cleanPhone.length >= 9 ? cleanPhone : '94711531989';
 
     // Construct formatted text message
     const messageLines = [
@@ -80,7 +86,8 @@ export const CustomizationForm: React.FC<CustomizationFormProps> = ({
       ``,
       `--- *CUSTOM NOTES* ---`,
       `📝 *Instructions:* ${instructions.trim() || 'None'}`,
-      `🖼️ *Uploaded Reference Ideas:* ${uploadedFiles.length} file(s) attached in portal idea list`,
+      `🖼️ *Uploaded Reference Ideas:* ${uploadedFiles.length} file(s) uploaded in portal`,
+      uploadedFiles.length > 0 ? `⚠️ *(Please manually attach these photos in this WhatsApp chat now)*` : ``,
       `----------------------------------------`,
       `Sent via Custom Branding Studio Ordering Portal`
     ];
@@ -139,7 +146,7 @@ export const CustomizationForm: React.FC<CustomizationFormProps> = ({
                   Don't like the examples? Upload your own idea (Max 2 Photos)
                 </p>
                 <p className="text-[11px] sm:text-xs font-medium text-orange-800 mt-0.5">
-                  ඔබට අවශ්‍ය වෙනත් මෝස්තර සටහනක් ඇත්නම් ඡායාරූප 2ක් දක්වා මෙතැනට එක් කරන්න
+                  ඔබට අවශ්‍ය වෙනත් මෝස්තර සටහනක් ඇත්නම් ඡායාරූප 2ක් දක්වා මෙතැනට එක් කරන්න. (Please manually send these in WhatsApp later)
                 </p>
               </div>
 
