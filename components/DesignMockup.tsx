@@ -120,15 +120,13 @@ export const DesignMockup: React.FC<DesignMockupProps> = ({ item, className = ''
   // Cover photo ratio layout
   if (item.imageUrl) {
     return (
-      <div className={`relative overflow-hidden flex flex-col justify-between rounded-xl bg-white shadow-md aspect-[16/9] ${className}`}>
-        <img src={item.imageUrl} alt={nameEn} className="w-full h-full object-cover absolute inset-0 z-0" />
-        <div className="relative z-10 flex items-center justify-between p-3 pointer-events-none">
-          <span className="px-2 py-0.5 rounded bg-black/60 backdrop-blur-md text-[10px] font-mono font-bold text-amber-300 border border-white/20">
-            {code}
-          </span>
-          <span className="flex items-center gap-1 px-2 py-0.5 rounded-full bg-black/40 backdrop-blur-md text-[9px] font-semibold tracking-wide text-white uppercase shadow-sm">
-            {item.category}
-          </span>
+      <div className={`relative overflow-hidden rounded-xl bg-white shadow-md aspect-[16/9] ${className}`}>
+        <img src={item.imageUrl} alt={nameEn} className="w-full h-full object-cover" />
+        <div className="absolute top-2 left-2 px-2 py-0.5 rounded bg-black/60 backdrop-blur-md text-[10px] font-mono font-bold text-amber-300 border border-white/20 pointer-events-none">
+          {code}
+        </div>
+        <div className="absolute top-2 right-2 flex items-center gap-1 px-2 py-0.5 rounded-full bg-black/40 backdrop-blur-md text-[9px] font-semibold tracking-wide text-white uppercase shadow-sm pointer-events-none">
+          {item.category}
         </div>
       </div>
     );

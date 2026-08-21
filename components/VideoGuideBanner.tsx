@@ -58,8 +58,8 @@ export const VideoGuideBanner: React.FC = () => {
                 </button>
                 <iframe
                   className="w-full h-full"
-                  src="https://www.youtube-nocookie.com/embed/dQw4w9WgXcQ?autoplay=1"
-                  title="Branding Guide Video"
+                  src="https://www.youtube-nocookie.com/embed/OvzCz02CdBU?autoplay=1"
+                  title="ඇඳුම් ව්‍යාපාරය ආරම්භය | Name & Branding Guide Video"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                   allowFullScreen
                 />
