@@ -22,10 +22,7 @@ export const DesignMockup: React.FC<DesignMockupProps> = ({ item, className = ''
           <div className="absolute top-2 left-2 px-2 py-0.5 rounded-md bg-black/60 backdrop-blur-md text-[10px] font-mono font-bold text-amber-300 border border-white/20">
             {code}
           </div>
-          {/* Category Tag */}
-          <div className="absolute top-2 right-2 px-2 py-0.5 rounded-full bg-black/40 backdrop-blur-md text-[9px] font-semibold text-white uppercase tracking-wider">
-            {item.category}
-          </div>
+
         </div>
       );
     }
@@ -41,10 +38,7 @@ export const DesignMockup: React.FC<DesignMockupProps> = ({ item, className = ''
           {code}
         </div>
 
-        {/* Category Tag */}
-        <div className="absolute top-2 right-2 px-2 py-0.5 rounded-full bg-white/20 backdrop-blur-md text-[9px] font-semibold text-white uppercase tracking-wider">
-          {item.category}
-        </div>
+
 
         {/* Dynamic Graphic Center based on code */}
         <div className="flex flex-col items-center justify-center space-y-2 z-10 text-center my-auto">
@@ -125,9 +119,7 @@ export const DesignMockup: React.FC<DesignMockupProps> = ({ item, className = ''
         <div className="absolute top-2 left-2 px-2 py-0.5 rounded bg-black/60 backdrop-blur-md text-[10px] font-mono font-bold text-amber-300 border border-white/20 pointer-events-none">
           {code}
         </div>
-        <div className="absolute top-2 right-2 flex items-center gap-1 px-2 py-0.5 rounded-full bg-black/40 backdrop-blur-md text-[9px] font-semibold tracking-wide text-white uppercase shadow-sm pointer-events-none">
-          {item.category}
-        </div>
+
       </div>
     );
   }

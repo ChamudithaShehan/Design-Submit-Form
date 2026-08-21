@@ -47,44 +47,13 @@ export const ImagePreviewModal: React.FC<ImagePreviewModalProps> = ({
 
         {/* Modal Body with Large Preview */}
         <div className="p-4 sm:p-6 overflow-y-auto space-y-4 bg-slate-50">
-          <div className="w-full flex items-center justify-center p-3 sm:p-4 bg-white rounded-xl shadow-inner border border-slate-200">
-            <div className={item.type === 'logo' ? 'w-48 h-48 xs:w-60 xs:h-60 sm:w-64 sm:h-64' : 'w-full max-w-md aspect-[16/9]'}>
+          <div className="w-full flex items-center justify-center p-3 sm:p-6 bg-white rounded-xl shadow-inner border border-slate-200">
+            <div className={item.type === 'logo' ? 'w-full max-w-[280px] sm:max-w-[400px] md:max-w-[480px] aspect-square' : 'w-full aspect-[16/9]'}>
               <DesignMockup item={item} isLarge />
             </div>
           </div>
 
-          {/* Details */}
-          <div className="bg-white p-3 sm:p-4 rounded-xl border border-orange-100 shadow-sm space-y-1.5 sm:space-y-2">
-            <div className="flex items-center justify-between">
-              <span className="text-[10px] sm:text-xs font-semibold text-orange-600 uppercase tracking-wider">
-                {item.type === 'logo' ? 'Logo Template' : 'Cover Photo Header'}
-              </span>
-              <span className="px-2 py-0.5 rounded-full bg-orange-100 text-orange-800 text-[10px] sm:text-xs font-medium">
-                {item.category}
-              </span>
-            </div>
 
-            <div>
-              <h4 className="font-extrabold text-slate-800 text-base sm:text-lg">
-                {item.nameEn}
-              </h4>
-              <p className="text-xs sm:text-sm font-semibold text-orange-600">
-                {item.nameSi}
-              </p>
-            </div>
-
-            <p className="text-xs text-slate-600 leading-normal">
-              {item.subtitleEn} • <span className="text-slate-500">{item.subtitleSi}</span>
-            </p>
-
-            <div className="flex flex-wrap gap-1 pt-1">
-              {item.tags.map((tag) => (
-                <span key={tag} className="px-1.5 py-0.5 rounded bg-slate-100 text-slate-600 text-[10px] font-medium">
-                  #{tag}
-                </span>
-              ))}
-            </div>
-          </div>
         </div>
 
         {/* Footer Actions */}
