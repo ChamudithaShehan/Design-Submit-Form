@@ -17,15 +17,14 @@ COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 
 # Next.js collects completely anonymous telemetry data about general usage.
-# Uncomment the following line in case you want to disable telemetry during the build.
 ENV NEXT_TELEMETRY_DISABLED=1
 
-# Environment variables for build time (can be overridden during build)
-ARG NEXT_PUBLIC_WHATSAPP_NUMBER
-ARG NEXT_PUBLIC_IMGBB_API_KEY
-ARG NEXT_PUBLIC_IMGBB_API_URL
-ARG NEXT_PUBLIC_DESIGN_ORDER_API_URL
-ARG NEXT_PUBLIC_DESIGN_ORDER_API_KEY
+# Build-time argument defaults (can be overridden with --build-arg)
+ARG NEXT_PUBLIC_WHATSAPP_NUMBER=94711531989
+ARG NEXT_PUBLIC_IMGBB_API_KEY=00c4f1e1b6e3849c1e9e7ef9ef981db6
+ARG NEXT_PUBLIC_IMGBB_API_URL=https://api.imgbb.com/1/upload
+ARG NEXT_PUBLIC_DESIGN_ORDER_API_URL=https://erp.shakthimathaya.site/api/public/design-order
+ARG NEXT_PUBLIC_DESIGN_ORDER_API_KEY=7f8a92b3c4d5e6f10293847561a2b3c4d5e6f7a8b9c0d1e2
 
 ENV NEXT_PUBLIC_WHATSAPP_NUMBER=${NEXT_PUBLIC_WHATSAPP_NUMBER}
 ENV NEXT_PUBLIC_IMGBB_API_KEY=${NEXT_PUBLIC_IMGBB_API_KEY}
@@ -41,6 +40,8 @@ WORKDIR /app
 
 ENV NODE_ENV=production
 ENV NEXT_TELEMETRY_DISABLED=1
+ENV PORT=3001
+ENV HOSTNAME="0.0.0.0"
 
 RUN addgroup --system --gid 1001 nodejs
 RUN adduser --system --uid 1001 nextjs
@@ -52,15 +53,11 @@ RUN mkdir .next
 RUN chown nextjs:nodejs .next
 
 # Automatically leverage output traces to reduce image size
-# https://nextjs.org/docs/advanced-features/output-file-tracing
 COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
 COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
 
 USER nextjs
 
-EXPOSE 3000
-
-ENV PORT=3000
-ENV HOSTNAME="0.0.0.0"
+EXPOSE 3001
 
 CMD ["node", "server.js"]

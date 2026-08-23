@@ -1,0 +1,25 @@
+services:
+  design-submit-form:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        NEXT_PUBLIC_WHATSAPP_NUMBER: ${NEXT_PUBLIC_WHATSAPP_NUMBER:-94711531989}
+        NEXT_PUBLIC_IMGBB_API_KEY: ${NEXT_PUBLIC_IMGBB_API_KEY:-00c4f1e1b6e3849c1e9e7ef9ef981db6}
+        NEXT_PUBLIC_IMGBB_API_URL: ${NEXT_PUBLIC_IMGBB_API_URL:-https://api.imgbb.com/1/upload}
+        NEXT_PUBLIC_DESIGN_ORDER_API_URL: ${NEXT_PUBLIC_DESIGN_ORDER_API_URL:-https://erp.shakthimathaya.site/api/public/design-order}
+        NEXT_PUBLIC_DESIGN_ORDER_API_KEY: ${NEXT_PUBLIC_DESIGN_ORDER_API_KEY:-7f8a92b3c4d5e6f10293847561a2b3c4d5e6f7a8b9c0d1e2}
+    container_name: design_submit_form_app
+    restart: unless-stopped
+    ports:
+      - "3001:3001"
+    environment:
+      - NODE_ENV=production
+      - PORT=3001
+      - NEXT_PUBLIC_WHATSAPP_NUMBER=${NEXT_PUBLIC_WHATSAPP_NUMBER:-94711531989}
+      - NEXT_PUBLIC_IMGBB_API_KEY=${NEXT_PUBLIC_IMGBB_API_KEY:-00c4f1e1b6e3849c1e9e7ef9ef981db6}
+      - NEXT_PUBLIC_IMGBB_API_URL=${NEXT_PUBLIC_IMGBB_API_URL:-https://api.imgbb.com/1/upload}
+      - NEXT_PUBLIC_DESIGN_ORDER_API_URL=${NEXT_PUBLIC_DESIGN_ORDER_API_URL:-https://erp.shakthimathaya.site/api/public/design-order}
+      - NEXT_PUBLIC_DESIGN_ORDER_API_KEY=${NEXT_PUBLIC_DESIGN_ORDER_API_KEY:-7f8a92b3c4d5e6f10293847561a2b3c4d5e6f7a8b9c0d1e2}
+    env_file:
+      - .env.local

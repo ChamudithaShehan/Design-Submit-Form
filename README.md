@@ -35,7 +35,7 @@ Then, run the development server:
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the application in action.
+Open [http://localhost:3001](http://localhost:3001) with your browser to see the application in action.
 
 ## ⚙️ Environment Configuration
 
@@ -48,6 +48,16 @@ NEXT_PUBLIC_WHATSAPP_NUMBER=94*********
 # Required: API key for ImgBB to handle image uploads
 NEXT_PUBLIC_IMGBB_API_KEY=your_imgbb_api_key_here
 ```
+
+## 🐳 Docker Deployment
+
+Build and run using Docker Compose:
+
+```bash
+docker compose up -d --build
+```
+
+Access the portal at `http://localhost:3001`.
 
 ## 📁 Project Structure
 
