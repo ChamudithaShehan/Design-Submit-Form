@@ -60,9 +60,9 @@ export const DesignCard: React.FC<DesignCardProps> = ({
             </button>
           </div>
 
-          <h4 className="font-semibold text-[11px] sm:text-xs text-slate-800 line-clamp-1">
+          <h3 className="font-semibold text-[11px] sm:text-xs text-slate-800 line-clamp-1">
             {item.nameEn}
-          </h4>
+          </h3>
           <p className="text-[10px] sm:text-[11px] font-medium text-brand-rust line-clamp-1 mt-0.5">
             {item.nameSi}
           </p>

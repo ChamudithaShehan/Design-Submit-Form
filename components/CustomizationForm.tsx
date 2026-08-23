@@ -261,16 +261,18 @@ export const CustomizationForm: React.FC<CustomizationFormProps> = ({
         <form onSubmit={handleSubmitWhatsApp} className="p-4 sm:p-8 space-y-4 sm:space-y-6">
           {/* File Upload Box */}
           <div className="space-y-1.5">
-            <label className="block text-xs sm:text-sm font-bold text-slate-800">
+            <label htmlFor="custom-reference-photo" className="block text-xs sm:text-sm font-bold text-slate-800">
               Custom Reference Photo Upload <span className="text-[11px] font-normal text-slate-500">(Optional)</span>
             </label>
 
             <div className="border-2 border-dashed border-brand-rust/40 rounded-xl bg-orange-50/50 hover:bg-orange-50/90 transition-colors p-4 sm:p-6 text-center flex flex-col items-center justify-center space-y-2 sm:space-y-3 cursor-pointer relative group">
               <input
                 ref={fileInputRef}
+                id="custom-reference-photo"
                 type="file"
                 accept="image/*"
                 multiple
+                aria-label="Custom Reference Photo Upload (Optional)"
                 onChange={handleFileUpload}
                 className="absolute inset-0 opacity-0 cursor-pointer w-full h-full z-10"
                 disabled={uploadedFiles.length >= 2}
@@ -363,15 +365,18 @@ export const CustomizationForm: React.FC<CustomizationFormProps> = ({
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
             {/* Input 1: Brand/Page Name */}
             <div className="space-y-1">
-              <label className="block text-xs sm:text-sm font-bold text-slate-800">
+              <label htmlFor="brand-name" className="block text-xs sm:text-sm font-bold text-slate-800">
                 1. Brand / Page Name <span className="text-red-500">*</span>
               </label>
               <span className="block text-[11px] sm:text-xs font-medium text-orange-950">
                 ව්‍යාපාරයේ / පේජ් එකේ නම (&quot;The exact name you want on the designs&quot;)
               </span>
               <input
+                id="brand-name"
+                name="brandName"
                 type="text"
                 required
+                aria-label="Brand or Page Name"
                 value={brandName}
                 onChange={(e) => {
                   setBrandName(e.target.value);
@@ -393,15 +398,18 @@ export const CustomizationForm: React.FC<CustomizationFormProps> = ({
 
             {/* Input 2: WhatsApp Number (Required) */}
             <div className="space-y-1">
-              <label className="block text-xs sm:text-sm font-bold text-slate-800">
+              <label htmlFor="whatsapp-number" className="block text-xs sm:text-sm font-bold text-slate-800">
                 2. WhatsApp Number <span className="text-red-500">*</span>
               </label>
               <span className="block text-[11px] sm:text-xs font-medium text-orange-950">
                 WhatsApp අංකය (&quot;Your active WhatsApp contact number&quot;)
               </span>
               <input
+                id="whatsapp-number"
+                name="whatsappNumber"
                 type="tel"
                 required
+                aria-label="WhatsApp Number"
                 value={whatsappNumber}
                 onChange={(e) => {
                   setWhatsappNumber(e.target.value);
@@ -423,14 +431,17 @@ export const CustomizationForm: React.FC<CustomizationFormProps> = ({
 
             {/* Input 3: Email Address (Optional) */}
             <div className="space-y-1">
-              <label className="block text-xs sm:text-sm font-bold text-slate-800">
+              <label htmlFor="email-address" className="block text-xs sm:text-sm font-bold text-slate-800">
                 3. Email Address <span className="text-[11px] font-normal text-slate-500">(Optional)</span>
               </label>
               <span className="block text-[11px] sm:text-xs font-medium text-orange-950">
                 විද්‍යුත් තැපෑල (&quot;To receive high quality files / order updates&quot;)
               </span>
               <input
+                id="email-address"
+                name="email"
                 type="email"
+                aria-label="Email Address"
                 value={email}
                 onChange={(e) => {
                   setEmail(e.target.value);
@@ -452,14 +463,17 @@ export const CustomizationForm: React.FC<CustomizationFormProps> = ({
 
             {/* Input 4: Products / Services */}
             <div className="space-y-1">
-              <label className="block text-xs sm:text-sm font-bold text-slate-800">
+              <label htmlFor="products-services" className="block text-xs sm:text-sm font-bold text-slate-800">
                 4. Products / Services <span className="text-[11px] font-normal text-slate-500">(Optional)</span>
               </label>
               <span className="block text-[11px] sm:text-xs font-medium text-orange-950">
                 නිෂ්පාදන / සේවාවන් (&quot;e.g., Clothing, Cakes, Cosmetics, Bags, etc.&quot;)
               </span>
               <input
+                id="products-services"
+                name="products"
                 type="text"
+                aria-label="Products or Services"
                 value={products}
                 onChange={(e) => setProducts(e.target.value)}
                 placeholder="e.g., Ladies Wear, Frocks, Accessories"
@@ -469,14 +483,17 @@ export const CustomizationForm: React.FC<CustomizationFormProps> = ({
 
             {/* Input 5: Color Preferences */}
             <div className="space-y-1 md:col-span-2">
-              <label className="block text-xs sm:text-sm font-bold text-slate-800">
+              <label htmlFor="color-preferences" className="block text-xs sm:text-sm font-bold text-slate-800">
                 5. Color Preferences for logo & covers <span className="text-[11px] font-normal text-slate-500">(Optional)</span>
               </label>
               <span className="block text-[11px] sm:text-xs font-medium text-orange-950">
                 වර්ණ තේරීම් (&quot;e.g., Navy Blue and Gold&quot;)
               </span>
               <input
+                id="color-preferences"
+                name="colorPrefs"
                 type="text"
+                aria-label="Color Preferences for logo and covers"
                 value={colorPrefs}
                 onChange={(e) => setColorPrefs(e.target.value)}
                 placeholder="e.g., Gold and Dark Royal Blue"
@@ -487,14 +504,17 @@ export const CustomizationForm: React.FC<CustomizationFormProps> = ({
 
           {/* Textarea: Customization Instructions */}
           <div className="space-y-1">
-            <label className="block text-xs sm:text-sm font-bold text-slate-800">
+            <label htmlFor="customization-instructions" className="block text-xs sm:text-sm font-bold text-slate-800">
               6. Customization Instructions & Notes <span className="text-[11px] font-normal text-slate-500">(Optional)</span>
             </label>
             <span className="block text-[11px] sm:text-xs font-medium text-orange-950">
               අමතර උපදෙස් (Textarea for tagline, contact numbers to show on cover, etc.)
             </span>
             <textarea
+              id="customization-instructions"
+              name="instructions"
               rows={3}
+              aria-label="Customization Instructions and Notes"
               value={instructions}
               onChange={(e) => setInstructions(e.target.value)}
               placeholder="e.g., Add tagline: 'Elegance in Every Stitch', add phone number 077-1234567 and delivery tag on cover photo."
