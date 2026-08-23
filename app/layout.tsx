@@ -1,5 +1,13 @@
 import type { Metadata } from "next";
+import { Montserrat } from "next/font/google";
 import "./globals.css";
+
+const montserrat = Montserrat({
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700", "800"],
+  variable: "--font-montserrat",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   title: "Custom Branding Studio | Logo & Cover Photo Ordering Portal",
@@ -12,8 +20,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className="h-full antialiased" suppressHydrationWarning>
-      <body className="min-h-full flex flex-col bg-slate-50 font-sans" suppressHydrationWarning>
+    <html lang="en" className={`h-full antialiased ${montserrat.variable}`} suppressHydrationWarning>
+      <body className={`min-h-full flex flex-col bg-slate-50 ${montserrat.className}`} suppressHydrationWarning>
         {children}
       </body>
     </html>
