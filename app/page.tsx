@@ -11,7 +11,7 @@ import { VideoGuideBanner } from '../components/VideoGuideBanner';
 import { CustomizationForm } from '../components/CustomizationForm';
 import { ImagePreviewModal } from '../components/ImagePreviewModal';
 import { BackToTopButton } from '../components/BackToTopButton';
-import { Sparkles } from 'lucide-react';
+import { Sparkles, ExternalLink } from 'lucide-react';
 
 export default function OrderPortalPage() {
   const [selectedLogo, setSelectedLogo] = useState<DesignItem | null>(null);
@@ -115,7 +115,17 @@ export default function OrderPortalPage() {
           © 2026 Custom Branding Studio. All Rights Reserved. (සන්නාම නිර්මාණ මැදිරිය)
         </p>
         <p className="text-slate-400 font-medium text-[11px] pt-1">
-          Developed by <span className="font-bold text-white tracking-wide">Brain<span className="text-[#F5BE1D]">t</span>isa</span>
+          Developed by{' '}
+          <a
+            href="https://braintisa.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group font-bold text-white tracking-wide hover:text-amber-400 hover:underline transition-colors inline-flex items-center gap-1 focus:outline-none focus:ring-2 focus:ring-amber-400/50 rounded-xs px-1 py-0.5"
+            title="Visit Braintisa Website (braintisa.com)"
+          >
+            <span>Brain<span className="text-[#F5BE1D]">t</span>isa</span>
+            <ExternalLink className="w-3 h-3 text-amber-400 opacity-75 group-hover:opacity-100 transition-opacity" />
+          </a>
         </p>
       </footer>
     </div>

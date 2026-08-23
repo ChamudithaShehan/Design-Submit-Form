@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { Sparkles, Palette, Crown, Zap } from 'lucide-react';
+import { Sparkles, Palette, Zap } from 'lucide-react';
 
 export const HeaderBanner: React.FC = () => {
   return (
@@ -11,13 +11,6 @@ export const HeaderBanner: React.FC = () => {
       <div className="absolute -bottom-24 -right-24 w-72 h-72 rounded-full bg-red-900/30 blur-3xl pointer-events-none" />
 
       <div className="max-w-6xl mx-auto px-3.5 py-6 sm:py-12 flex flex-col items-center text-center relative z-10">
-        {/* Top Floating Badge */}
-        <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/15 backdrop-blur-md border border-white/30 text-amber-100 text-[11px] sm:text-xs font-semibold tracking-wide uppercase shadow-sm mb-2.5">
-          <Crown className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-amber-300 fill-amber-300" />
-          <span>Premium Ordering Portal • 2026</span>
-          <Sparkles className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-amber-200" />
-        </div>
-
         {/* Main Title */}
         <h1 className="text-2xl xs:text-3xl sm:text-5xl font-bold tracking-tight drop-shadow-md text-white">
           Custom Branding Studio
