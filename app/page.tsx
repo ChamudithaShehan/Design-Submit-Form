@@ -10,7 +10,7 @@ import { SelectionSummaryBar } from '../components/SelectionSummaryBar';
 import { VideoGuideBanner } from '../components/VideoGuideBanner';
 import { CustomizationForm } from '../components/CustomizationForm';
 import { ImagePreviewModal } from '../components/ImagePreviewModal';
-import { Sparkles, Heart } from 'lucide-react';
+import { Sparkles } from 'lucide-react';
 
 export default function OrderPortalPage() {
   const [selectedLogo, setSelectedLogo] = useState<DesignItem | null>(null);
@@ -39,7 +39,7 @@ export default function OrderPortalPage() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-50 text-slate-900 flex flex-col font-sans selection:bg-orange-500 selection:text-white">
+    <div className="min-h-screen bg-slate-50 text-slate-900 flex flex-col font-sans selection:bg-brand-accent selection:text-white">
       {/* Top Branding Banner Header */}
       <HeaderBanner />
 
@@ -108,7 +108,7 @@ export default function OrderPortalPage() {
           <span>Custom Branding Studio • Premium ordering portal</span>
         </div>
         <p className="text-slate-500">
-          © 2026 Custom Branding Studio. All Rights Reserved. (අභිරුචි සන්නාම නිර්මාණ මැදිරිය)
+          © 2026 Custom Branding Studio. All Rights Reserved. (සන්නාම නිර්මාණ මැදිරිය)
         </p>
       </footer>
     </div>
