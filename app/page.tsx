@@ -10,6 +10,7 @@ import { SelectionSummaryBar } from '../components/SelectionSummaryBar';
 import { VideoGuideBanner } from '../components/VideoGuideBanner';
 import { CustomizationForm } from '../components/CustomizationForm';
 import { ImagePreviewModal } from '../components/ImagePreviewModal';
+import { BackToTopButton } from '../components/BackToTopButton';
 import { Sparkles } from 'lucide-react';
 
 export default function OrderPortalPage() {
@@ -81,6 +82,9 @@ export default function OrderPortalPage() {
         />
       </main>
 
+      {/* Floating Back to Top Button */}
+      <BackToTopButton />
+
       {/* Fullscreen Image Preview Modal */}
       <ImagePreviewModal
         item={previewItem}
@@ -109,6 +113,9 @@ export default function OrderPortalPage() {
         </div>
         <p className="text-slate-500">
           © 2026 Custom Branding Studio. All Rights Reserved. (සන්නාම නිර්මාණ මැදිරිය)
+        </p>
+        <p className="text-slate-400 font-medium text-[11px] pt-1">
+          Developed by <span className="font-bold text-white tracking-wide">Brain<span className="text-[#F5BE1D]">t</span>isa</span>
         </p>
       </footer>
     </div>

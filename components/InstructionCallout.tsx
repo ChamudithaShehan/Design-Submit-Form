@@ -13,9 +13,9 @@ export const InstructionCallout: React.FC = () => {
             <Info className="w-4 h-4 sm:w-6 sm:h-6 animate-bounce" />
           </div>
           <div className="sm:hidden">
-            <h3 className="font-bold text-brand-dark text-sm">
+            <h2 className="font-bold text-brand-dark text-sm">
               How to Order Your Custom Design
-            </h3>
+            </h2>
             <span className="text-[10px] font-semibold text-brand-rust">
               උපදෙස්
             </span>
@@ -25,9 +25,9 @@ export const InstructionCallout: React.FC = () => {
         {/* Text Content */}
         <div className="space-y-1 flex-1">
           <div className="hidden sm:flex flex-wrap items-center gap-2">
-            <h3 className="font-bold text-brand-dark text-base flex items-center gap-1.5">
+            <h2 className="font-bold text-brand-dark text-base flex items-center gap-1.5">
               <span>How to Order Your Custom Design</span>
-            </h3>
+            </h2>
             <span className="px-2.5 py-0.5 rounded-full bg-[#ffedd5] text-brand-dark border border-brand-rust/20 text-xs font-bold">
               උපදෙස්
             </span>

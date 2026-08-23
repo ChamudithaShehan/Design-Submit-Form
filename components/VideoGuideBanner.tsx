@@ -22,9 +22,9 @@ export const VideoGuideBanner: React.FC = () => {
               <span>Branding Masterclass & Guide</span>
             </div>
 
-            <h3 className="text-xl sm:text-3xl font-bold text-white tracking-tight leading-tight">
+            <h2 className="text-xl sm:text-3xl font-bold text-white tracking-tight leading-tight">
               Business Name & Branding Guide
-            </h3>
+            </h2>
             <p className="text-base sm:text-lg font-semibold text-amber-300">
               ඇඳුම් ව්‍යාපාරය SESSION
             </p>
