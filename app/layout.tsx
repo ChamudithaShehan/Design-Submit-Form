@@ -10,8 +10,7 @@ const montserrat = Montserrat({
 });
 
 export const metadata: Metadata = {
-  title: "Custom Branding Studio | Logo & Cover Photo Ordering Portal",
-  description: "Select premium Logo and Cover Photo designs for your business. Custom branding, bilingual Sinhala and English ordering portal with instant WhatsApp order submission.",
+  title: "Custom Branding Studio",
 };
 
 export default function RootLayout({
